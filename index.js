@@ -5,7 +5,14 @@ import { hideBin } from 'yargs/helpers';
 import {
   Options,
   OptionsConfig
-} from './options'
+} from './options';
+import {
+  encode,
+  encodeCustom,
+  decode,
+  createToken,
+  checkToken
+} from './check';
 
 function title() {
   console.log(chalk.bold.green(
@@ -15,14 +22,6 @@ function title() {
       verticalLayout: 'default'
     })
   ))
-}
-
-function encode() {
-  console.log('Create Pass')
-}
-
-function decode() {
-  console.log('Create Pass')
 }
 
 function getArguments() {
@@ -46,9 +45,25 @@ function getArguments() {
 function operation(args) {
   console.log(args)
   const {
-    enconde, encodeCustom, decode, token,
-    user, pass, hash, salt, secretToken
+    enconde, encodeCustom, decode,
+    createToken, checkToken,
+    user, pass, hash, salt,
+    secretToken, token
   } = args
+
+  if (enconde) {
+    encode();
+  } else if (encodeCustom && pass) {
+    encodeCustom(pass)
+  } else if (decode && pass && salt && hash) {
+    decode(pass, salt, hash)
+  } else if (createToken && pass && user && secretToken) {
+    createToken(pass, user, secret)
+  } else if (checkToken && token && secretToken) {
+    checkToken(token, secret)
+  } else {
+    console.log('There was a problem. Pelease use "help" option to follow teh indications.')
+  }
 }
 
 function init() {

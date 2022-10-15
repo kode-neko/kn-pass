@@ -1,23 +1,23 @@
 function encode() {
-  return 'test';
+  return 'encode';
 }
 function encodeCustom(pass) {
-  return 'test';
+  return 'encodeCustom';
 }
 function decode(pass, salt, hash) {
-  return 'test';
+  return 'decode';
 }
-function token(pass, user, secret) {
-  return 'test';
+function createToken(pass, user, secret) {
+  return 'createToken';
 }
 function checkToken(token, secret) {
-  return 'test';
+  return 'checkToken';
 }
 
 export {
   encode,
   encodeCustom,
   decode,
-  token,
+  createToken,
   checkToken
 }
