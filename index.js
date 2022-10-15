@@ -5,14 +5,14 @@ import { hideBin } from 'yargs/helpers';
 import {
   Options,
   OptionsConfig
-} from './options';
+} from './options.js';
 import {
-  encode,
-  encodeCustom,
-  decode,
-  createToken,
-  checkToken
-} from './check';
+  encode as encodeF,
+  encodeCustom as encodeCustomF,
+  decode as decodeF,
+  createToken as createTokenF,
+  checkToken as checkTokenF
+} from './check.js';
 
 function title() {
   console.log(chalk.bold.green(
@@ -43,24 +43,23 @@ function getArguments() {
 }
 
 function operation(args) {
-  console.log(args)
   const {
-    enconde, encodeCustom, decode,
+    encode, encodeCustom, decode,
     createToken, checkToken,
     user, pass, hash, salt,
     secretToken, token
   } = args
 
-  if (enconde) {
-    encode();
+  if (encode) {
+    encodeF();
   } else if (encodeCustom && pass) {
-    encodeCustom(pass)
+    encodeCustomF(pass)
   } else if (decode && pass && salt && hash) {
-    decode(pass, salt, hash)
+    decodeF(pass, salt, hash)
   } else if (createToken && pass && user && secretToken) {
-    createToken(pass, user, secret)
+    createTokenF(pass, user, secret)
   } else if (checkToken && token && secretToken) {
-    checkToken(token, secret)
+    checkTokenF(token, secret)
   } else {
     console.log('There was a problem. Pelease use "help" option to follow teh indications.')
   }
@@ -70,6 +69,7 @@ function init() {
   title();
   const args = getArguments();
   console.log('values', args);
+  operation(args)
 }
 
 init();

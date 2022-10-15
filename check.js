@@ -1,17 +1,17 @@
 function encode() {
-  return 'encode';
+  return console.log('encode');
 }
 function encodeCustom(pass) {
-  return 'encodeCustom';
+  return console.log('encodeCustom');
 }
 function decode(pass, salt, hash) {
-  return 'decode';
+  return console.log('decode');
 }
 function createToken(pass, user, secret) {
-  return 'createToken';
+  return console.log('createToken');
 }
 function checkToken(token, secret) {
-  return 'checkToken';
+  return console.log('checkToken');
 }
 
 export {
