@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import randomatic from 'randomatic';
-import jsonwebtoken from 'jsonwebtoken';
+import { default as jwt } from 'jsonwebtoken';
 
 function encode(length) {
   const pass = randomatic('Aa0!', length);
@@ -8,19 +8,23 @@ function encode(length) {
   const hash = bcrypt.hashSync(pass, salt);
   return { pass, salt, hash }
 }
-function encodeCustom(pass) {
-  console.log('encodeCustom');
+function encodeCustom(pass, length) {
+  const salt = bcrypt.genSaltSync(12);
+  const hash = bcrypt.hashSync(pass, salt);
+  return { pass, salt, hash }
 }
 function decode(pass, salt, hash) {
   const hashCheck = bcrypt.hashSync(pass, salt);
   const isPass = hash === hashCheck;
   return { isPass }
 }
-function createToken(pass, user, secret) {
-  console.log('createToken');
+function createToken(user, secret) {
+  const token = jwt.sign({ user }, secret, { expiresIn: 1 * 60 * 60 * 1000 });
+  return { token }
 }
 function checkToken(token, secret) {
-  console.log('checkToken');
+  const isVerify = jwt.verify(token, secret);
+  return { isVerify }
 }
 
 export {

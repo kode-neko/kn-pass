@@ -60,7 +60,7 @@ function operation(args) {
   if (encode) {
     msj = encodeF(length);
   } else if (encodeCustom && pass) {
-    msj = encodeCustomF(pass)
+    msj = encodeCustomF(pass, length)
   } else if (decode && pass && salt && hash) {
     msj = decodeF(pass, salt, hash)
   } else if (createToken && pass && user && secretToken) {
@@ -71,15 +71,13 @@ function operation(args) {
     msj = { err: 'There was a problem. Pelease use "help" option to follow teh indications.' }
     return
   }
-  console.log(msj)
   print(msj)
 }
 
 function init() {
   title();
   const args = getArguments();
-  console.log('values', process.argv);
-  // operation(args)
+  operation(args)
 }
 
 init();
