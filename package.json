@@ -5,7 +5,10 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "enc": "node index.js -e",
+    "encCus": "node index.js -e -p patata",
+    "tok": "node index.js -t -u patata -S chssss",
+    "nocon": "node no-console.js"
   },
   "author": "",
   "license": "ISC",

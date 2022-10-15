@@ -4,12 +4,12 @@ import { default as jwt } from 'jsonwebtoken';
 
 function encode(length) {
   const pass = randomatic('Aa0!', length);
-  const salt = bcrypt.genSaltSync(12);
+  const salt = bcrypt.genSaltSync(length);
   const hash = bcrypt.hashSync(pass, salt);
   return { pass, salt, hash }
 }
 function encodeCustom(pass, length) {
-  const salt = bcrypt.genSaltSync(12);
+  const salt = bcrypt.genSaltSync(length);
   const hash = bcrypt.hashSync(pass, salt);
   return { pass, salt, hash }
 }
@@ -19,6 +19,7 @@ function decode(pass, salt, hash) {
   return { isPass }
 }
 function createToken(user, secret) {
+  console.log('create')
   const token = jwt.sign({ user }, secret, { expiresIn: 1 * 60 * 60 * 1000 });
   return { token }
 }

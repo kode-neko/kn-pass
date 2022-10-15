@@ -8,7 +8,7 @@ const Options = {
   PASS: 'pass',
   HASH: 'hash',
   SALT: 'salt',
-  SECRET_TOKEN: 'secret',
+  SECRET_TOKEN: 'secretToken',
   TOKEN: 'token',
   LENGTH: 'length',
 }
@@ -38,14 +38,14 @@ const OptionsConfig = {
   [Options.CREATE_TOKEN]: {
     name: 'createToken',
     alias: 't',
-    describe: 'Create token from pass - user - secret',
+    describe: 'Create token from user & secret',
     type: 'boolean',
     default: false
   },
   [Options.CHECK_TOKEN]: {
     name: 'checkToken',
     alias: 'T',
-    describe: 'Check token from token - secret',
+    describe: 'Check token from token & secret',
     type: 'boolean',
     default: false
   },

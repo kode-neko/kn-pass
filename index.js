@@ -70,7 +70,6 @@ function operation(args) {
     msj = checkTokenF(token, secretToken)
   } else {
     msj = { err: 'There was a problem. Pelease use "help" option to follow teh indications.' }
-    return
   }
   print(msj)
 }
