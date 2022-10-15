@@ -25,6 +25,7 @@ function title() {
 }
 
 function print(infoList) {
+  console.log(chalk.bgGreen('Result'))
   Object.keys(infoList).forEach(key =>
     console.log(key, infoList[key])
   );
@@ -35,9 +36,9 @@ function getArguments() {
     .locale('en')
     .option(Options.ENCODE, OptionsConfig[Options.ENCODE])
     .option(Options.ENCODE_CUSTOM, OptionsConfig[Options.ENCODE_CUSTOM])
-    .option(Options.DECODE, OptionsConfig[Options.DECODE])
+    // .option(Options.DECODE, OptionsConfig[Options.DECODE])
     .option(Options.CREATE_TOKEN, OptionsConfig[Options.CREATE_TOKEN])
-    .option(Options.CHECK_TOKEN, OptionsConfig[Options.CHECK_TOKEN])
+    // .option(Options.CHECK_TOKEN, OptionsConfig[Options.CHECK_TOKEN])
     .option(Options.USER, OptionsConfig[Options.USER])
     .option(Options.PASS, OptionsConfig[Options.PASS])
     .option(Options.HASH, OptionsConfig[Options.HASH])
@@ -63,10 +64,10 @@ function operation(args) {
     msj = encodeCustomF(pass, length)
   } else if (decode && pass && salt && hash) {
     msj = decodeF(pass, salt, hash)
-  } else if (createToken && pass && user && secretToken) {
-    msj = createTokenF(pass, user, secret)
+  } else if (createToken && user && secretToken) {
+    msj = createTokenF(user, secretToken)
   } else if (checkToken && token && secretToken) {
-    msj = checkTokenF(token, secret)
+    msj = checkTokenF(token, secretToken)
   } else {
     msj = { err: 'There was a problem. Pelease use "help" option to follow teh indications.' }
     return
@@ -77,6 +78,7 @@ function operation(args) {
 function init() {
   title();
   const args = getArguments();
+  // console.log(args)
   operation(args)
 }
 
