@@ -24,6 +24,12 @@ function title() {
   ))
 }
 
+function print(infoList) {
+  Object.keys(infoList).forEach(key =>
+    console.log(key, infoList[key])
+  );
+}
+
 function getArguments() {
   const argsv = yargs(hideBin(process.argv))
     .locale('en')
@@ -38,6 +44,7 @@ function getArguments() {
     .option(Options.SALT, OptionsConfig[Options.SALT])
     .option(Options.SECRET_TOKEN, OptionsConfig[Options.SECRET_TOKEN])
     .option(Options.TOKEN, OptionsConfig[Options.TOKEN])
+    .option(Options.LENGTH, OptionsConfig[Options.LENGTH])
     .argv
   return argsv;
 }
@@ -47,29 +54,32 @@ function operation(args) {
     encode, encodeCustom, decode,
     createToken, checkToken,
     user, pass, hash, salt,
-    secretToken, token
+    secretToken, token, length
   } = args
-
+  let msj;
   if (encode) {
-    encodeF();
+    msj = encodeF(length);
   } else if (encodeCustom && pass) {
-    encodeCustomF(pass)
+    msj = encodeCustomF(pass)
   } else if (decode && pass && salt && hash) {
-    decodeF(pass, salt, hash)
+    msj = decodeF(pass, salt, hash)
   } else if (createToken && pass && user && secretToken) {
-    createTokenF(pass, user, secret)
+    msj = createTokenF(pass, user, secret)
   } else if (checkToken && token && secretToken) {
-    checkTokenF(token, secret)
+    msj = checkTokenF(token, secret)
   } else {
-    console.log('There was a problem. Pelease use "help" option to follow teh indications.')
+    msj = { err: 'There was a problem. Pelease use "help" option to follow teh indications.' }
+    return
   }
+  console.log(msj)
+  print(msj)
 }
 
 function init() {
   title();
   const args = getArguments();
-  console.log('values', args);
-  operation(args)
+  console.log('values', process.argv);
+  // operation(args)
 }
 
 init();

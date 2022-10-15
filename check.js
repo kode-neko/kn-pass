@@ -1,17 +1,26 @@
-function encode() {
-  return console.log('encode');
+import bcrypt from 'bcrypt';
+import randomatic from 'randomatic';
+import jsonwebtoken from 'jsonwebtoken';
+
+function encode(length) {
+  const pass = randomatic('Aa0!', length);
+  const salt = bcrypt.genSaltSync(12);
+  const hash = bcrypt.hashSync(pass, salt);
+  return { pass, salt, hash }
 }
 function encodeCustom(pass) {
-  return console.log('encodeCustom');
+  console.log('encodeCustom');
 }
 function decode(pass, salt, hash) {
-  return console.log('decode');
+  const hashCheck = bcrypt.hashSync(pass, salt);
+  const isPass = hash === hashCheck;
+  return { isPass }
 }
 function createToken(pass, user, secret) {
-  return console.log('createToken');
+  console.log('createToken');
 }
 function checkToken(token, secret) {
-  return console.log('checkToken');
+  console.log('checkToken');
 }
 
 export {

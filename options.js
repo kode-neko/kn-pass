@@ -10,6 +10,7 @@ const Options = {
   SALT: 'salt',
   SECRET_TOKEN: 'secret',
   TOKEN: 'token',
+  LENGTH: 'length',
 }
 
 const OptionsConfig = {
@@ -83,6 +84,13 @@ const OptionsConfig = {
     alias: 'k',
     describe: 'Set the token',
     type: 'string',
+  },
+  [Options.LENGTH]: {
+    name: 'length',
+    alias: 'l',
+    default: 12,
+    describe: 'Set the length for teh auto generated pass',
+    type: 'number',
   },
 }
 
