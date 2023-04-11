@@ -5,9 +5,9 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "enc": "node index.js -e",
-    "encCus": "node index.js -e -p patata",
-    "tok": "node index.js -t -u patata -S chssss",
+    "enc": "node index.js --encode",
+    "encCus": "node index.js --encodeCustom --pass patata",
+    "tok": "node index.js --createToken --user patata --secretToken chssss",
     "nocon": "node no-console.js"
   },
   "author": "",
