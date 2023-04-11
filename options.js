@@ -15,6 +15,12 @@ const Options = {
 };
 
 const OptionsConfig = {
+  [Options.KEY]: {
+    name: "key",
+    describe: "Create a random key",
+    type: "boolean",
+    default: false,
+  },
   [Options.ENCODE]: {
     name: "encode",
     alias: "e",

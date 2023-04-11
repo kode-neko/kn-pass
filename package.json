@@ -5,6 +5,7 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
+    "key": "node index.js --key --length 18",
     "enc": "node index.js --encode",
     "encCus": "node index.js --encodeCustom --pass patata",
     "tok": "node index.js --createToken --user patata --secretToken chssss",

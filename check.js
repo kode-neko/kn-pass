@@ -2,7 +2,7 @@ import bcrypt from "bcrypt";
 import randomatic from "randomatic";
 import {default as jwt} from "jsonwebtoken";
 
-function key(length) {
+function createKey(length) {
   const key = randomatic("Aa0!", length);
   return {key};
 }
@@ -37,4 +37,4 @@ function checkToken(token, secret) {
   return {isVerify};
 }
 
-export {key, encode, encodeCustom, decode, createToken, checkToken};
+export {createKey, encode, encodeCustom, decode, createToken, checkToken};

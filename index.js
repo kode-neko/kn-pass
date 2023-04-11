@@ -4,6 +4,7 @@ import yargs from "yargs";
 import {hideBin} from "yargs/helpers";
 import {Options, OptionsConfig} from "./options.js";
 import {
+  createKey,
   encode as encodeF,
   encodeCustom as encodeCustomF,
   decode as decodeF,
@@ -23,14 +24,15 @@ function title() {
   );
 }
 
-function print(op, infoList) {
-  console.log(chalk.bgGreen(`Result ${op} `));
+function print(title, infoList) {
+  console.log(chalk.bgGreen(title + "\n"));
   Object.keys(infoList).forEach((key) => console.log(key, "\t", infoList[key]));
 }
 
 function getArguments() {
   const argsv = yargs(hideBin(process.argv))
     .locale("en")
+    .option(Options.KEY, OptionsConfig[Options.KEY])
     .option(Options.ENCODE, OptionsConfig[Options.ENCODE])
     .option(Options.ENCODE_CUSTOM, OptionsConfig[Options.ENCODE_CUSTOM])
     // .option(Options.DECODE, OptionsConfig[Options.DECODE])
@@ -48,6 +50,7 @@ function getArguments() {
 
 function operation(args) {
   const {
+    key,
     encode,
     encodeCustom,
     decode,
@@ -61,36 +64,41 @@ function operation(args) {
     token,
     length,
   } = args;
-  let op;
+
+  let title;
   let msj;
-  if (encode) {
-    op = "Encode";
+
+  if (key) {
+    title = "Key";
+    msj = createKey(length);
+  } else if (encode) {
+    title = "Encode";
     msj = encodeF(length);
   } else if (encodeCustom && pass) {
-    op = "Encode Custom";
+    title = "Encode Custom";
     msj = encodeCustomF(pass, length);
   } else if (decode && pass && salt && hash) {
-    op = "Decode Pass Salt";
+    title = "Decode Pass Salt";
     msj = decodeF(pass, salt, hash);
   } else if (createToken && user && secretToken) {
-    op = "Create Token";
+    title = "Create Token";
     msj = createTokenF(user, secretToken);
   } else if (checkToken && token && secretToken) {
-    op = "Check Token";
+    title = "Check Token";
     msj = checkTokenF(token, secretToken);
   } else {
-    op = "";
+    title = "";
     msj = {
       err: 'There was a problem. Pelease use "help" option to follow teh indications.',
     };
   }
-  print(op, msj);
+
+  print(title, msj);
 }
 
 function init() {
   title();
   const args = getArguments();
-  // console.log(args)
   operation(args);
 }
 
