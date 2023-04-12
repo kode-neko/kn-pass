@@ -10,6 +10,7 @@ import {
   decode as decodeF,
   createToken as createTokenF,
   checkToken as checkTokenF,
+  createPass,
 } from "./check.js";
 
 function title() {
@@ -33,6 +34,7 @@ function getArguments() {
   const argsv = yargs(hideBin(process.argv))
     .locale("en")
     .option(Options.KEY, OptionsConfig[Options.KEY])
+    .option(Options.C_PASS, OptionsConfig[Options.C_PASS])
     .option(Options.ENCODE, OptionsConfig[Options.ENCODE])
     .option(Options.ENCODE_CUSTOM, OptionsConfig[Options.ENCODE_CUSTOM])
     // .option(Options.DECODE, OptionsConfig[Options.DECODE])
@@ -51,13 +53,14 @@ function getArguments() {
 function operation(args) {
   const {
     key,
+    cPass,
+    pass,
     encode,
     encodeCustom,
     decode,
     createToken,
     checkToken,
     user,
-    pass,
     hash,
     salt,
     secretToken,
@@ -71,6 +74,9 @@ function operation(args) {
   if (key) {
     title = "Key";
     msj = createKey(length);
+  } else if (cPass) {
+    title = "Password";
+    msj = createPass(length);
   } else if (encode) {
     title = "Encode";
     msj = encodeF(length);

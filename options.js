@@ -1,5 +1,6 @@
 const Options = {
   KEY: "key",
+  C_PASS: "cPass",
   ENCODE: "encode",
   ENCODE_CUSTOM: "encodeCustom",
   DECODE: "decode",
@@ -18,6 +19,12 @@ const OptionsConfig = {
   [Options.KEY]: {
     name: "key",
     describe: "Create a random key",
+    type: "boolean",
+    default: false,
+  },
+  [Options.C_PASS]: {
+    name: "cPass",
+    describe: "Create a random password",
     type: "boolean",
     default: false,
   },

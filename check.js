@@ -1,10 +1,16 @@
 import bcrypt from "bcrypt";
 import randomatic from "randomatic";
 import {default as jwt} from "jsonwebtoken";
+import {generateKeySync} from "node:crypto";
 
 function createKey(length) {
-  const key = randomatic("Aa0!", length);
+  const key = generateKeySync("aes", {length}).export().toString("hex");
   return {key};
+}
+
+function createPass(length) {
+  const pass = randomatic("Aa0!", length);
+  return {pass};
 }
 
 function encode(length) {
@@ -37,4 +43,12 @@ function checkToken(token, secret) {
   return {isVerify};
 }
 
-export {createKey, encode, encodeCustom, decode, createToken, checkToken};
+export {
+  createKey,
+  createPass,
+  encode,
+  encodeCustom,
+  decode,
+  createToken,
+  checkToken,
+};
