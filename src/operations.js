@@ -32,8 +32,10 @@ function opCheckHash(pass, hash) {
   return {isPass};
 }
 
-function opCreateToken(user, secretKey) {
-  const token = jwt.sign({user}, secretKey, {expiresIn: 1 * 60 * 60 * 1000});
+function opCreateToken(username, secretKey) {
+  const token = jwt.sign({username}, secretKey, {
+    expiresIn: 1 * 60 * 60 * 1000,
+  });
   return {token};
 }
 
