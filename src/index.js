@@ -11,7 +11,7 @@ import {
   opCheckHash,
   opCreateToken,
   opCheckToken,
-} from "../operations.js";
+} from "./operations.js";
 
 function title() {
   console.log(
@@ -26,7 +26,8 @@ function title() {
 }
 
 function print(title, infoList) {
-  console.log(chalk.bgGreen(title + "\n"));
+  // console.log(chalk.bgGreen(title + "\n"));
+  console.log(title + "\n");
   Object.keys(infoList).forEach((key) => console.log(key, "\t", infoList[key]));
 }
 
@@ -85,11 +86,11 @@ function operation(args) {
     msj = opCreatePass(length);
     // createHash
   } else if (createHash) {
-    title = "Create 🐣 Random Pass 🤐 & Hash ㊙️";
+    title = "Create 🐣 Random Pass 🤐  Hash ㊙️";
     msj = opCreateHash(length);
     // createHashCustom
   } else if (createHashCustom && pass) {
-    title = "Create 🐣 Salt 🧂 & Hash ㊙️";
+    title = "Create 🐣 Salt 🧂 Hash ㊙️";
     msj = opCreateHashCustom(pass);
     // checkHash
   } else if (checkHash && pass && hash) {

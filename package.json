@@ -5,12 +5,13 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "key": "node .src/index.js --createKey --length 256",
-    "pass": "node .src/index.js --createPass --length 16",
-    "hash": "node .src/index.js --createHash --pass test",
-    "check:hash": "node .src/index.js --checkHash --pass test --secretKey secret",
-    "token": "node .src/index.js --createToken --username test --secretKey secret",
-    "check:token": "node .src/index.js --checkToken --token token --secretKey secret"
+    "help": "node ./src/index.js --help",
+    "key": "node ./src/index.js --createKey --length 256",
+    "pass": "node ./src/index.js --createPass --length 16",
+    "hash": "node ./src/index.js --createHashCustom --pass test",
+    "check:hash": "node ./src/index.js --checkHash --pass test --hash secret",
+    "token": "node ./src/index.js --createToken --username test --secretKey secret",
+    "check:token": "node ./src/index.js --checkToken --token token --secretKey secret"
   },
   "author": "",
   "license": "ISC",
