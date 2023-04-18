@@ -37,7 +37,7 @@ function getArguments() {
     .option(Options.C_PASS, OptionsConfig[Options.C_PASS])
     .option(Options.ENCODE, OptionsConfig[Options.ENCODE])
     .option(Options.ENCODE_CUSTOM, OptionsConfig[Options.ENCODE_CUSTOM])
-    // .option(Options.DECODE, OptionsConfig[Options.DECODE])
+    .option(Options.DECODE, OptionsConfig[Options.DECODE])
     .option(Options.CREATE_TOKEN, OptionsConfig[Options.CREATE_TOKEN])
     // .option(Options.CHECK_TOKEN, OptionsConfig[Options.CHECK_TOKEN])
     .option(Options.USER, OptionsConfig[Options.USER])
@@ -81,11 +81,11 @@ function operation(args) {
     title = "Encode";
     msj = encodeF(length);
   } else if (encodeCustom && pass) {
-    title = "Encode Custom";
-    msj = encodeCustomF(pass, length);
-  } else if (decode && pass && salt && hash) {
-    title = "Decode Pass Salt";
-    msj = decodeF(pass, salt, hash);
+    title = "Encode Hash";
+    msj = encodeCustomF(pass);
+  } else if (decode && pass && hash) {
+    title = "Decode Hash";
+    msj = decodeF(pass, hash);
   } else if (createToken && user && secretToken) {
     title = "Create Token";
     msj = createTokenF(user, secretToken);

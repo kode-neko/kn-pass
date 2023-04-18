@@ -7,9 +7,8 @@
   "scripts": {
     "key": "node index.js --key --length 256",
     "pass": "node index.js --cPass --length 18",
-    "enc": "node index.js --encode",
-    "encCus": "node index.js --encodeCustom --pass patata",
-    "tok": "node index.js --createToken --user patata --secretToken chssss",
+    "enc": "node index.js --encodeCustom --pass test",
+    "tok": "node index.js --createToken --user test --secretToken test",
     "nocon": "node no-console.js"
   },
   "author": "",

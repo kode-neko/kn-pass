@@ -20,20 +20,19 @@ function encode(length) {
   return {pass, salt, hash};
 }
 
-function encodeCustom(pass, length) {
-  const salt = bcrypt.genSaltSync(length);
+function encodeCustom(pass) {
+  const salt = bcrypt.genSaltSync();
   const hash = bcrypt.hashSync(pass, salt);
   return {pass, salt, hash};
 }
 
-function decode(pass, salt, hash) {
-  const hashCheck = bcrypt.hashSync(pass, salt);
-  const isPass = hash === hashCheck;
+function decode(pass, hash) {
+  console.log(hash);
+  const isPass = bcrypt.compareSync(pass, hash);
   return {isPass};
 }
 
 function createToken(user, secret) {
-  console.log("create");
   const token = jwt.sign({user}, secret, {expiresIn: 1 * 60 * 60 * 1000});
   return {token};
 }
