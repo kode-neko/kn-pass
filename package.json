@@ -1,26 +1,29 @@
 {
   "name": "create-pass",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "",
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "enc": "node index.js -e",
-    "encCus": "node index.js -e -p patata",
-    "tok": "node index.js -t -u patata -S chssss",
-    "nocon": "node no-console.js"
+    "help": "node ./src/index.js --help",
+    "key": "node ./src/index.js --createKey --length 256",
+    "pass": "node ./src/index.js --createPass --length 16",
+    "hash": "node ./src/index.js --createHashCustom --pass test",
+    "check:hash": "node ./src/index.js --checkHash --pass test --hash secret",
+    "token": "node ./src/index.js --createToken --username test --secretKey secret",
+    "check:token": "node ./src/index.js --checkToken --token token --secretKey secret"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.0",
-    "chalk": "^5.1.2",
-    "figlet": "^1.5.2",
-    "jsonwebtoken": "^8.5.1",
+    "chalk": "^5.2.0",
+    "figlet": "^1.6.0",
+    "jsonwebtoken": "^9.0.0",
     "randomatic": "^3.1.1",
-    "yargs": "^17.6.0"
+    "yargs": "^17.7.1"
   },
   "devDependencies": {
-    "eslint": "^8.25.0"
+    "eslint": "^8.38.0"
   }
 }
