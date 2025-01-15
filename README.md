@@ -1,3 +1,7 @@
 # KN Pass
 
-This a small app to create pass, hashes, salt and tokens. Only for testing porpouse.
+An small pass + hash + jwt token generator 🤫🔐#️⃣
+
+# Functions
+
+The script section of package.json include a several commands. Freely modify each one 😉
